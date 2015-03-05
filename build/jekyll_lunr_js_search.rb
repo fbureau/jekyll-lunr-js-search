@@ -25,6 +25,8 @@ module Jekyll
         }.merge!(config['lunr_search'] || {})
 
         @js_dir = lunr_config['js_dir']
+        @json_name = lunr_config['json_name']
+        @json_dir = lunr_config['json_dir']
         gem_lunr = File.join(File.dirname(__FILE__), "../../build/lunr.min.js")
         @lunr_path = File.exist?(gem_lunr) ? gem_lunr : File.join(@js_dir, File.basename(gem_lunr))
         raise "Could not find #{@lunr_path}" if !File.exist?(@lunr_path)
@@ -85,8 +87,8 @@ module Jekyll
           Jekyll.logger.debug "Lunr:", (entry.title ? "#{entry.title} (#{entry.url})" : entry.url)
         end
         
-        FileUtils.mkdir_p(File.join(site.dest, @js_dir))
-        filename = File.join(@js_dir, 'index.json')
+        FileUtils.mkdir_p(File.join(site.dest, @json_dir))
+        filename = File.join(@json_dir, @json_name)
         
         total = {
           "docs" => @docs,
@@ -139,7 +141,7 @@ module Jekyll
 end
 module Jekyll
   module LunrJsSearch
-    VERSION = "0.2.1"
+    VERSION = "0.2.1.1"
   end
 end
 module Jekyll

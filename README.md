@@ -170,6 +170,15 @@ You can choose to store `index.json`, `search.min.js` and `lunr.min.js` in a dif
 
 Sometimes you want a quick build of your site. If you want to exclude the indexing (which can take some time) you can run `jekyll build -- --no-lunr-index`. Note the additional `--`.
 
+
+### 12. Define the filename and the filepath
+
+If you want to define the path and the name of the json file, you can add an array of exclusions to the site's `_config.yml` file.
+
+    lunr_search:
+        json_name: "search.json"
+        json_dir: ""
+
 ## Demo
 
 Search plugin is deployed to [10consulting.com/search](http://10consulting.com/search/).
